@@ -1,0 +1,19 @@
+{
+    "list": [
+        {
+            "pattern": "did:modena:matic",
+            "url": "https://quarkid-sidetree-dev.gcba.gob.ar/",
+            "behavior": 1
+        },
+        {
+            "pattern": "did:quarkid:starknet",
+            "url": "https://is-starknet-hml.gcba.gob.ar",
+            "behavior": 1
+        },
+        {
+            "pattern": "did:quarkid",
+            "url": "http://modena.gcba-extrimian.com:6900/",
+            "behavior": 1
+        }
+    ]
+}

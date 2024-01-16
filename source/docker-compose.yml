@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+    resolver:
+        container_name: modena-resolver
+        build:
+          context: .
+          dockerfile: Dockerfile
+        extra_hosts:
+          - host.docker.internal:host-gateway
+        ports:
+          - 8080:8080 #MODENA API port
+
