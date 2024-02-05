@@ -1,41 +1,91 @@
-env var qa.
+## Descripción
 
-name: NODE_1_URL
+El componente API Proxy, también conocido como reverse proxy, esta diseñado para operar como un punto de entrada a múltiples DID Methods, con el fin de simplificar su gestión y resolución. Esto se debe a que cada implementación de DID tiene sus propias especificaciones y dinámicas.
 
-value: https://is-starknet-qa.gcba.gob.ar/
+## Tecnologías
 
-name: NODE_1_PATTERN
+- Node.js 14.19.1
+- Nest.js 18.1.0
 
-value: did:quarkid:starknet
+## Diagrama
 
-name: NODE_1_BEHAVIOR
+## Licencia
 
-value: 1
+Copyright [2023] [Gobierno de la Ciudad de Buenos Aires]
 
-env var hml
+Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
+no puede utilizar este archivo excepto de conformidad con la Licencia.
+Puede obtener una copia de la Licencia en
 
-name: NODE_1_URL
+[LICENSE](http://www.apache.org/licenses/LICENSE-2.0)
 
-value: https://is-starknet-hml.gcba.gob.ar/
+A menos que lo exija la ley aplicable o se acuerde por escrito, el software
+distribuido bajo la Licencia se distribuye "TAL CUAL",
+SIN GARANTÍAS NI CONDICIONES DE NINGÚN TIPO, ya sean expresas o implícitas.
+Consulte la Licencia para conocer el idioma específico que rige los permisos y
+limitaciones bajo la Licencia.
 
-name: NODE_1_PATTERN
+## Variables de Entorno
 
-value: did:quarkid:starknet
+### Generales
 
-name: NODE_1_BEHAVIOR
+QA
+- "NODE_1_URL":"http://modena.gcba-extrimian.com:7000",
+- "NODE_1_PATTERN":"did:quarkid:matic",
+- "NODE_1_BEHAVIOR":1,
+- "NODE_2_URL":"https://is-starknet-qa.gcba.gob.ar",
+- "NODE_2_PATTERN":"did:quarkid:starknet",
+- "NODE_2_BEHAVIOR":1,
+- "NODE_3_URL":"http://10.9.10.43:8000",
+- "NODE_3_PATTERN":"did:quarkid:zksync",
+- "NODE_3_BEHAVIOR":1
 
-value: 1
+HML
+- "NODE_1_URL":"http://modena.gcba-extrimian.com:7000",
+- "NODE_1_PATTERN":"did:quarkid:matic",
+- "NODE_1_BEHAVIOR":1,
+- "NODE_2_URL":"https://is-starknet-hml.gcba.gob.ar",
+- "NODE_2_PATTERN":"did:quarkid:starknet",
+- "NODE_2_BEHAVIOR":1,
+- "NODE_3_URL":"http://10.9.10.43:8000",
+- "NODE_3_PATTERN":"did:quarkid:zksync",
+- "NODE_3_BEHAVIOR":1
 
-env var prod
+PROD
+- "NODE_1_URL":"URL NODO MATIC",
+- "NODE_1_PATTERN":"did:quarkid:matic",
+- "NODE_1_BEHAVIOR":1,
+- "NODE_2_URL":"URL NODO STARKNET"r",
+- "NODE_2_PATTERN":"did:quarkid:starknet",
+- "NODE_2_BEHAVIOR":1,
+- "NODE_3_URL":"URL NODO ZKSYNC",
+- "NODE_3_PATTERN":"did:quarkid:zksync",
+- "NODE_3_BEHAVIOR":1
 
-name: NODE_1_URL
+## Instalacón
 
-value: api-starknet link
+```bash
+RUN npm install -g @nestjs/cli
+RUN npm install
+RUN nest build
+CMD ["nest" , "start"]
+EXPOSE 8080
+```
 
-name: NODE_1_PATTERN
+## Healthcheck
 
-value: did:quarkid:starknet
+Para comprobar la salud del servicio basta con navegar la url base con una / al final, retornara un Status 200, con un OK.
 
-name: NODE_1_BEHAVIOR
+## Requerimientos de red
 
-value: 1
+La aplicación debe tener conectividad a internet para comunicarse con la red y al componente api-zkSyn.
+
+## Ruta de acceso
+
+[DEV](https://is-proxy-dev.gcba.gob.ar/)
+[QA](https://is-proxy-qa.gcba.gob.ar/)
+[HML](https://is-proxy-hml.gcba.gob.ar/)
+[PROD](https://node-ssi.buenosaires.gob.ar/)
+
+
+
