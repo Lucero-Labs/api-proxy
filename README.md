@@ -1,4 +1,19 @@
-# 01-core
+## [Descripción](https://github.com/gcba/api-proxy/tree/master#descripci%C3%B3n)
+## [Tecnología](https://github.com/gcba/api-proxy/tree/master#tecnolog%C3%ADas)
+## [Arquitectura](https://docs.quarkid.org/Arquitectura/) y [Documentación](https://docs.quarkid.org/Arquitectura/componentes/)
+## Configuración
+### 1. [Entorno local](https://github.com/gcba/api-proxy/tree/master#configuraci%C3%B3n-de-entorno-local)
+### 2. [Variables de Entorno](https://github.com/gcba/api-proxy/tree/master#variables-de-entorno)
+### 3. [Pasos para instalar el componente en un servidor](https://github.com/gcba/api-proxy/tree/master#pasos-para-instalar-el-componente-en-un-servidor)
+### 4. [Pasos para iniciar un nodo de Identidad Quarkid](https://github.com/gcba/Nodo-QuickStar/tree/master)
+## [Licencia](https://github.com/gcba/api-proxy/tree/master?tab=readme-ov-file#licencia)
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# Descripción
 
 El componente API Proxy, también conocido como reverse proxy, esta diseñado para
 operar como un punto de entrada a múltiples DID Methods, con el fin de simplificar su gestión y
@@ -11,77 +26,88 @@ La aplicación cuenta con las siguientes técnologias:
 
 * NodeJs
 * TypeScript
+  
+## Arquitectura
+[Diagrama](https://docs.quarkid.org/Arquitectura/)
+
+## Documentación
+[Link](https://docs.quarkid.org/Arquitectura/componentes/)
+
+## Configuración de entorno local
+Clonar el repositorio
+
+- Abrir el proyecto con el editor seleccionado
+- Abrir una terminal y ejecutar:
+
+```bash
+- cd source
+- yarn
+- yarn build
+- yarn start
+```
+
+## Pasos para instalar el componente en un servidor
+
+1. Contar con Linux vacío. 
+2. Instalar el componente y sus imágenes, se encuentran [Dockerhub](https://hub.docker.com/r/quarkid/api-proxy). 
+
+Para instalar un componente desde Docker Hub en tu servidor, sigue estos pasos:
+
+1. Conéctate al servidor.
+
+2. Instala Docker en el servidor:
+Si aún no tienes Docker instalado en tu servidor, sigue las instrucciones para instalar Docker en tu sistema operativo. Puedes encontrar guías detalladas en la documentación oficial de Docker.
+
+3. Descarga la imagen del componente desde Docker Hub utilizando el comando
+   
+```bash
+'docker pull'
+```
+
+Debes especificar el nombre completo de la imagen, que incluye el nombre del usuario o la organización en Docker Hub y el nombre de la imagen. Ejecuta el contenedor: 
+
+```bash
+docker pull docker pull quarkid/api-proxy
+```
+
+Una vez que la imagen del componente se haya descargado en tu servidor, puedes ejecutar un contenedor utilizando el comando
+
+```bash
+'docker run'.
+```
+
+6. Verifica que el contenedor esté en ejecución:
+Utiliza el comando docker ps para verificar que el contenedor esté en ejecución en tu servidor.
+
 
 ## Variables de Entorno
 
-Variables de entorno de la aplicación
+Se tienen que configurar las mismas en el archivo /api-proxy/source/src/.env
 
-- "NODE_1_URL":"http://url_node",
-- "NODE_1_PATTERN":"did_method_name",
-- "NODE_1_BEHAVIOR":1,
-- "NODE_2_URL":"https://url_noe",
-- "NODE_2_PATTERN":"did_method_name",
-- "NODE_2_BEHAVIOR":1,
-- "NODE_3_URL":"http://url_node",
-- "NODE_3_PATTERN":"did_method_name",
-- "NODE_3_BEHAVIOR":1
+### Generales
+
+N/A
 
 ## Logs
 
-Los logs del proceso se encuentran disponibles:
-
-### DEV o QA:
-
-URL: https://kibana-openshift-logging.apps.ocp4-dev.gcba.gob.ar (autentica contra AD)
-
-Deben crear el index-pattern: app-*
-
-En la seccion Discover podran filtrar los logs por app clickeando sobre "Add a filter +"  y agregando los siguientes filtros:
-
-kubernetes.namespace_name is {namespace}
-Ej: kubernetes.namespace_name is identidad-soberana-qa
-kubernetes.container_name is {componente}
-Ej: kubernetes.container_name is api-proxy
-
-Namespaces:
-- identidad-soberana-dev
-- identidad-soberana-qa
-
-Componente:
-- api-proxy
-
-### HML o PRD:
-
-URL: https://ops-view.gcba.gob.ar/ (autentica contra AD)
-
-Entrar en Kibana, luego Discover, clickear sobre lemu-demolime-* y seleccionar el indice lemu-openshift-*
-Podran filtrar los logs por app clickeando sobre "Add a filter +"  y agregando los siguientes filtros:
-
-op_cluster is {cluster}
-Ej: op_cluster is hml
-op_namespace is {componente}
-Ej: op_container is api-proxy
-
-Clusters
-- hml
-- prodint
-- prodext (en su caso usarian prodext porque su web es publica .buenosaires)
-
-Componente
-- api-proxy
-
+N/A
 
 ## Requerimientos de red
 
-La aplicación debe tener conectividad a internet para comunicarse con la red y al componente api-zkSyn.
+La aplicación debe tener conectividad a internet para comunicarse con la red y al componente api-zkSync.
 
 ## Ruta de acceso
+La aplicación debe tener conectividad a internet.
 
-Ambiente            URL
-DEV     https://is-proxy-dev.gcba.gob.ar/
-QA      https://is-proxy-qa.gcba.gob.ar
-HML     https://is-proxy-hml.gcba.gob.ar
-PROD    https://node-ssi.buenosaires.gob.ar/
+## Licencia
+Derechos de autor © 2023 Gobierno de la Ciudad de Buenos Aires
 
-.
-
+Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
+usted no puede utilizar este archivo excepto en cumplimiento con la Licencia.
+Puede obtener una copia de la Licencia en
+http://www.apache.org/licenses/LICENSE-2.0.
+A menos que lo requiera la ley aplicable o se acuerde por escrito, el software
+distribuido bajo la Licencia se distribuye "TAL CUAL",
+SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sean expresas o implícitas.
+Consulte la Licencia para el idioma específico que rige los permisos y
+limitaciones bajo la Licencia.
