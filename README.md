@@ -1,43 +1,36 @@
-## [Descripción](https://github.com/gcba/api-proxy/tree/master#descripci%C3%B3n)
-## [Tecnología](https://github.com/gcba/api-proxy/tree/master#tecnolog%C3%ADas)
-## [Arquitectura](https://docs.quarkid.org/Arquitectura/) y [Documentación](https://docs.quarkid.org/Arquitectura/componentes/)
-## Configuración
-### 1. [Entorno local](https://github.com/gcba/api-proxy/tree/master#configuraci%C3%B3n-de-entorno-local)
-### 2. [Variables de Entorno](https://github.com/gcba/api-proxy/tree/master#variables-de-entorno)
-### 3. [Pasos para instalar el componente en un servidor](https://github.com/gcba/api-proxy/tree/master#pasos-para-instalar-el-componente-en-un-servidor)
-### 4. [Pasos para iniciar un nodo de Identidad Quarkid](https://github.com/gcba/Nodo-QuickStar/tree/master)
-## [Licencia](https://github.com/gcba/api-proxy/tree/master?tab=readme-ov-file#licencia)
-
-
-
+## [Description](#description)
+## [Technology](#technologies)
+## [Architecture](https://docs.quarkid.org/en/Arquitectura/) and [Documentation](https://docs.quarkid.org/en/Arquitectura/componentes/)
+## Configuration
+### 1. [Local Environment](#local-environment-setup)
+### 2. [Environment Variables](#environment-variables)
+### 3. [Steps to install the component on a server](#steps-to-install-the-component-on-a-server)
+### 4. [Steps to start a Quarkid Identity node](https://github.com/ssi-quarkid/Nodo-QuickStart)
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Descripción
+# Description
 
-El componente API Proxy, también conocido como reverse proxy, esta diseñado para
-operar como un punto de entrada a múltiples DID Methods, con el fin de simplificar su gestión y
-resolución. Esto se debe a que cada implementación de DID tiene sus propias especificaciones
-y dinámicas.
+The API Proxy component, also known as reverse proxy, is designed to operate as an entry point to multiple DID Methods, in order to simplify their management and resolution. This is because each DID implementation has its own specifications and dynamics.
 
-## Tecnologías
+## Technologies
 
-La aplicación cuenta con las siguientes técnologias:
+The application uses the following technologies:
 
 * NodeJs
 * TypeScript
-  
-## Arquitectura
-[Diagrama](https://docs.quarkid.org/Arquitectura/)
 
-## Documentación
-[Link](https://docs.quarkid.org/Arquitectura/componentes/)
+## Architecture
+[Diagram](https://docs.quarkid.org/en/Arquitectura/)
 
-## Configuración de entorno local
-Clonar el repositorio
+## Documentation
+[Link](https://docs.quarkid.org/en/Arquitectura/componentes/)
 
-- Abrir el proyecto con el editor seleccionado
-- Abrir una terminal y ejecutar:
+## Local environment setup
+Clone the repository
+
+- Open the project with the selected editor
+- Open a terminal and run:
 
 ```bash
 - cd source
@@ -46,45 +39,36 @@ Clonar el repositorio
 - yarn start
 ```
 
-## Pasos para instalar el componente en un servidor
+## Steps to install the component on a server
 
-1. Contar con Linux vacío. 
-2. Instalar el componente y sus imágenes, se encuentran [Dockerhub](https://hub.docker.com/r/quarkid/api-proxy). 
+1. Have an empty Linux server.
+2. Install the component and its images, which can be found on [Dockerhub](https://hub.docker.com/r/quarkid/api-proxy).
 
-Para instalar un componente desde Docker Hub en tu servidor, sigue estos pasos:
+To install a component from Docker Hub on your server, follow these steps:
 
-1. Conéctate al servidor.
+1. Connect to the server.
 
-2. Instala Docker en el servidor:
-Si aún no tienes Docker instalado en tu servidor, sigue las instrucciones para instalar Docker en tu sistema operativo. Puedes encontrar guías detalladas en la documentación oficial de Docker.
+2. Install Docker on the server:
+If you don't have Docker installed on your server yet, follow the instructions to install Docker on your operating system. You can find detailed guides in the official Docker documentation.
 
-3. Descarga la imagen del componente desde Docker Hub utilizando el comando
-   
-```bash
-'docker pull'
-```
+3. Download the component image from Docker Hub using the 'docker pull' command
 
-Debes especificar el nombre completo de la imagen, que incluye el nombre del usuario o la organización en Docker Hub y el nombre de la imagen. Ejecuta el contenedor: 
+You must specify the full name of the image, which includes the username or organization name on Docker Hub and the image name. Run the container:
 
 ```bash
-docker pull docker pull quarkid/api-proxy
+docker pull quarkid/api-proxy
 ```
 
-Una vez que la imagen del componente se haya descargado en tu servidor, puedes ejecutar un contenedor utilizando el comando
+Once the component image has been downloaded to your server, you can run a container using the 'docker run' command.
 
-```bash
-'docker run'.
-```
+6. Verify that the container is running:
+Use the docker ps command to verify that the container is running on your server.
 
-6. Verifica que el contenedor esté en ejecución:
-Utiliza el comando docker ps para verificar que el contenedor esté en ejecución en tu servidor.
+## Environment Variables
 
+These need to be configured in the file /api-proxy/source/src/.env
 
-## Variables de Entorno
-
-Se tienen que configurar las mismas en el archivo /api-proxy/source/src/.env
-
-### Generales
+### General
 
 N/A
 
@@ -92,22 +76,9 @@ N/A
 
 N/A
 
-## Requerimientos de red
+## Network Requirements
 
-La aplicación debe tener conectividad a internet para comunicarse con la red y al componente api-zkSync.
+The application must have internet connectivity to communicate with the network and the api-zkSync component.
 
-## Ruta de acceso
-La aplicación debe tener conectividad a internet.
-
-## Licencia
-Derechos de autor © 2023 Gobierno de la Ciudad de Buenos Aires
-
-Licenciado bajo la Licencia Apache, Versión 2.0 (la "Licencia");
-usted no puede utilizar este archivo excepto en cumplimiento con la Licencia.
-Puede obtener una copia de la Licencia en
-http://www.apache.org/licenses/LICENSE-2.0.
-A menos que lo requiera la ley aplicable o se acuerde por escrito, el software
-distribuido bajo la Licencia se distribuye "TAL CUAL",
-SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sean expresas o implícitas.
-Consulte la Licencia para el idioma específico que rige los permisos y
-limitaciones bajo la Licencia.
+## Access Route
+The application must have internet connectivity.
