@@ -33,7 +33,7 @@ export class AppService {
       this._mappings = new Mappings();
 
       while (nodeUrl) {
-        const pn = new ProxyNode();6
+        const pn = new ProxyNode();
 
         pn.url = nodeUrl;
         pn.pattern = ENVIROMENT[`NODE_${nodeNumber}_PATTERN`];
