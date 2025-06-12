@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { AppController } from './modena-resolver.controller';
 import { AppService } from './modena-resolver.service';
 
@@ -6,5 +6,6 @@ import { AppService } from './modena-resolver.service';
   imports: [],
   controllers: [AppController],
   providers: [AppService],
+  exports: [AppService],
 })
 export class AppModule {}

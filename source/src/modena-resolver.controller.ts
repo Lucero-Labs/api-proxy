@@ -1,10 +1,13 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Inject, forwardRef } from '@nestjs/common';
 import { CreateDIDRequest } from './models/create-did-request';
 import { AppService } from './modena-resolver.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(
+    @Inject(forwardRef(() => AppService))
+    private readonly appService: AppService
+  ) { }
 
   @Get()
   healthCheck(): string {
