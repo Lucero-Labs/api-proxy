@@ -8,6 +8,7 @@ export class BehaviourManager{
     constructor(){
         this.setBehaviourMap();
     }
+
     private setBehaviourMap(){ 
         this.map.set(1, new SidetreeBehaviour());
         this.map.set(0, new UniversalBehaviour());
@@ -16,7 +17,6 @@ export class BehaviourManager{
     public get(key : number) : Behaviour{
         return this.map.get(key) ?? this.map.get(0);
     }
-
 
     public has(key:number){
         return this.map.has(key);

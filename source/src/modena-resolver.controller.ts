@@ -11,8 +11,6 @@ export class AppController {
     return 'OK';
   }
 
-  
-
   @Get("mappings")
   mappings() {
     return this.appService.getMappings();

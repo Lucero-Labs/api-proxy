@@ -1,12 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import mappings from './config/methods.json';
-import Behaviour from './behaviours/Behaviour';
-import axios from 'axios';
 import { BehaviourManager } from './behaviours/BehaviourManager';
 import { CreateDIDRequest } from './models/create-did-request';
 import { ENVIROMENT } from './main';
 
-const base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
 @Injectable()
 export class AppService {
   behaviours: BehaviourManager
@@ -61,13 +58,7 @@ export class AppService {
     return this._mappings;
   }
 
-  //1 - Utils.ts => Checkear que lo que me queda si es un identifier del did ( me fijo si es base 64 o dos base64 con :)
-  //2 - Clase de Sidetree behaviour
-  //3 - Clase de Universal behaviour ( si no tiene behaviour o == 0)
-  //4 - Ordenar los methods por index
-
   async resolveDID(did: String): Promise<String> {
-
     for (let idx = 0; idx < this.getMappings().list.length; idx++) {
       const pattern = new RegExp("^" + this.getMappings().list[idx].pattern + '*');
       const actualResolver = this.getMappings().list[idx];
@@ -82,8 +73,6 @@ export class AppService {
       }
     }
   }
-  //5 - Universal y despues full axios
-
 
   async createDID(request: CreateDIDRequest): Promise<any> {
     const didMethod = this.getMappings().list.find(x => x.pattern == request.didMethod);

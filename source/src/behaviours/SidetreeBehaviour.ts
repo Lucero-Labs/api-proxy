@@ -2,10 +2,14 @@ import Behaviour from "./Behaviour";
 import { validateIdentifier } from "../utils";
 import axios from "axios";
 export default class SidetreeBehaviour implements Behaviour {
+  getMethodLength = (method: string) => {
+    return method.length + ((method.slice(-1) === ':') ? 0 : 1);
+  }
+  
   async resolve(did: String, method: string, url: string) {
-    const method_length = method.length + ((method.slice(-1) === ':') ? 0 : 1);
+    const method_length =  this.getMethodLength(method);
     console.log(`getting: ${url}/resolve/${did.substring(method_length)}`)
-    //  return `${url}/resolve/${did.substring(method_length )}`;
+
     try {
       return (await axios.get(`${url}/resolve/${did.substring(method_length)}`)).data;
     } catch (error) {
@@ -14,7 +18,8 @@ export default class SidetreeBehaviour implements Behaviour {
   }
 
   validate(did: String, method: string): boolean {
-    const method_length = method.length + ((method.slice(-1) === ':') ? 0 : 1);
+    const method_length = this.getMethodLength(method);
+
     if (did.charAt(method_length - 1) !== ':')
       return false;
     return validateIdentifier(did.substring(method_length));

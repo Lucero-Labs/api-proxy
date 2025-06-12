@@ -1,5 +1,4 @@
 import Behaviour from "./Behaviour";
-import {validateIdentifier}from "../utils";
 import axios from "axios";
 
 export default class UniversalBehaviour implements Behaviour{
