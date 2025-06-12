@@ -1,4 +1,5 @@
 import Behaviour from "./Behaviour";
+import DidKeyBehaviour from "./DidKeyBehaviour";
 import SidetreeBehaviour from "./SidetreeBehaviour";
 import UniversalBehaviour from "./UniversalBehaviour";
 
@@ -10,6 +11,7 @@ export class BehaviourManager{
     }
 
     private setBehaviourMap(){ 
+        this.map.set(2, new DidKeyBehaviour());
         this.map.set(1, new SidetreeBehaviour());
         this.map.set(0, new UniversalBehaviour());
     }
