@@ -79,9 +79,17 @@ export default class WebBehaviour implements Behaviour {
 
 
         return {
-            canonicalId: did, // For did:web, the DID itself is the canonical ID
-            did: did,
+            canonicalId: did, // Add canonicalId at the top level for compatibility with caller
             didDocument: didDocument,
+            didDocumentMetadata: {
+                canonicalId: did, // Keep nested for DID document structure conformance
+                // Add other metadata properties if needed, e.g., created, deactivated, versionId
+                created: new Date().toISOString(), // Placeholder
+                deactivated: false, // Placeholder
+                versionId: "1" // Placeholder
+            },
+            // Include other properties returned by the original registry method if necessary
+            did: did,
             webPath: webPath
         };
     }
