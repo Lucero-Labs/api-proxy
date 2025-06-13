@@ -5,20 +5,37 @@ const didDocumentStore: Map<string, any> = new Map();
 export default class WebBehaviour implements Behaviour {
 
     async registry(request: any, url: string): Promise<any> {
-        const { domain, path, didDocument } = request;
+        // For did:web, we don't send to a Sidetree node
+        // Instead, we create and host the DID document based on the incoming Sidetree-like request
 
-        // 1. Validate the domain
-        if (!domain) {
-            throw new Error("Domain is required for did:web");
-        }
+        const domain = "lucerolabs.xyz"; // Fixed domain as per clarification
+        const path = undefined; // No path for now
 
-        // 2. Create the DID identifier
-        const did = path ? `did:web:${domain}:${path.replace(/\//g, ':')}` : `did:web:${domain}`; 
+        // The modenaRequest is already parsed in the service layer
+        const sidetreeRequestData = request;
 
-        // 3. Ensure the DID document has the correct ID
-        didDocument.id = did;
+        // Extract publicKeys and services from the parsed Sidetree data
+        // Assuming the structure is request.delta.patches[0].document
+        const publicKeys = sidetreeRequestData?.delta?.patches?.[0]?.document?.publicKeys || [];
+        const services = sidetreeRequestData?.delta?.patches?.[0]?.document?.services || [];
 
-        // 4. Host the document using the in-memory store
+        // 1. Create the DID identifier
+        // Using fixed domain and no path
+        const did = `did:web:${domain}`;
+
+        console.log('>>>>>:', did);
+
+        // 2. Construct the DID document
+        const didDocument = {
+            "@context": ["https://www.w3.org/ns/did/v1"],
+            id: did,
+            verificationMethod: publicKeys, // Map Sidetree publicKeys to verificationMethod
+            service: services // Map Sidetree services to service
+            // Add authentication, assertionMethod, etc. if needed based on publicKeys purposes
+            // For simplicity, we'll just include verificationMethod and service for now
+        };
+
+        // 3. Host the document using the in-memory store
         const webPath = this.getWebPath(domain, path);
         // In-memory hosting: store the document by its web path
         didDocumentStore.set(webPath, didDocument);
