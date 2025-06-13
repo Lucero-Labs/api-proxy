@@ -8,7 +8,7 @@
     "NODE_3_URL":"http://10.9.10.43:8000",
     "NODE_3_PATTERN":"did:quarkid:zksync",
     "NODE_3_BEHAVIOR":1,
-    "NODE_4_URL":"",
-    "NODE_4_PATTERN":"key",
+    "NODE_4_URL":"https://web.com",
+    "NODE_4_PATTERN":"did:web",
     "NODE_4_BEHAVIOR":2
 }

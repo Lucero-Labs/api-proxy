@@ -19,6 +19,11 @@
             "pattern": "did:key:",
             "behavior": 2,
             "url": ""
+        },
+        {
+            "pattern": "did:web:",
+            "behavior": 3,
+            "url": ""
         }
-    ]
+]
 }

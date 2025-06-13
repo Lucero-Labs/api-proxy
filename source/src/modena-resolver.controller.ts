@@ -26,6 +26,7 @@ export class AppController {
 
   @Post('create')
   async createDID(@Body() request: CreateDIDRequest) {
+    console.log({request});
     return await this.appService.createDID(request);
   }
 }
