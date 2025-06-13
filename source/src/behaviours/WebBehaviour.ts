@@ -1,4 +1,5 @@
 import Behaviour from "./Behaviour";
+import { ModenaPublicKeyPurpose } from "../models/create-did-request";
 
 const didDocumentStore: Map<string, any> = new Map();
 
@@ -26,14 +27,49 @@ export default class WebBehaviour implements Behaviour {
         console.log('>>>>>:', did);
 
         // 2. Construct the DID document
-        const didDocument = {
-            "@context": ["https://www.w3.org/ns/did/v1"],
+        const keyAgreement: string[] = [];
+        const assertionMethod: string[] = [];
+        const authentication: string[] = [];
+
+        const verificationMethod = publicKeys.map((key: any) => {
+            const vm = {
+                ...key,
+                controller: did, // Add controller property
+            };
+            if (key.purposes) {
+                if (key.purposes.includes(ModenaPublicKeyPurpose.KeyAgreement)) {
+                    keyAgreement.push(`#${key.id}`);
+                }
+                if (key.purposes.includes(ModenaPublicKeyPurpose.AssertionMethod)) {
+                    assertionMethod.push(`#${key.id}`);
+                }
+                if (key.purposes.includes(ModenaPublicKeyPurpose.Authentication)) {
+                    authentication.push(`#${key.id}`);
+                }
+            }
+            return vm;
+        });
+
+        const didDocument: any = {
+            "@context": [
+                "https://www.w3.org/ns/did/v1",
+                "https://w3id.org/security/suites/jws-2020/v1",
+                { "@vocab": "https://www.w3.org/ns/did#" }
+            ],
             id: did,
-            verificationMethod: publicKeys, // Map Sidetree publicKeys to verificationMethod
-            service: services // Map Sidetree services to service
-            // Add authentication, assertionMethod, etc. if needed based on publicKeys purposes
-            // For simplicity, we'll just include verificationMethod and service for now
+            verificationMethod: verificationMethod,
+            service: services,
         };
+
+        if (keyAgreement.length > 0) {
+            didDocument.keyAgreement = keyAgreement;
+        }
+        if (assertionMethod.length > 0) {
+            didDocument.assertionMethod = assertionMethod;
+        }
+        if (authentication.length > 0) {
+            didDocument.authentication = authentication;
+        }
 
         // 3. Host the document using the in-memory store
         const webPath = this.getWebPath(domain, path);
@@ -43,6 +79,7 @@ export default class WebBehaviour implements Behaviour {
 
 
         return {
+            canonicalId: did, // For did:web, the DID itself is the canonical ID
             did: did,
             didDocument: didDocument,
             webPath: webPath

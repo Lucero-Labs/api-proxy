@@ -80,6 +80,7 @@ export class AppService {
     if (didMethod) {
       const behaviour = this.behaviours.get(didMethod.behavior)
       const result = await behaviour.registry(JSON.parse(request.modenaRequest), didMethod.url);
+      console.log({result})
       return result;
     }
 
