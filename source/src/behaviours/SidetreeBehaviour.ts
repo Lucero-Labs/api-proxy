@@ -27,6 +27,7 @@ export default class SidetreeBehaviour implements Behaviour {
 
   async registry(request: any, url: string): Promise<any> {
     try {
+      console.log({request})
       return (await axios.post(`${url}/create`, request)).data;
     } catch (error) {
       return error.response;

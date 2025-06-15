@@ -1,4 +1,7 @@
 {
+    "NODE_0_URL":"https://lbquarkid.extrimian.com/",
+    "NODE_0_PATTERN":"did:quarkid",
+    "NODE_0_BEHAVIOR":1,
     "NODE_1_URL":"http://modena.gcba-extrimian.com:7000",
     "NODE_1_PATTERN":"did:quarkid:matic",
     "NODE_1_BEHAVIOR":1,
@@ -10,5 +13,8 @@
     "NODE_3_BEHAVIOR":1,
     "NODE_4_URL":"https://web.com",
     "NODE_4_PATTERN":"did:web",
-    "NODE_4_BEHAVIOR":2
+    "NODE_4_BEHAVIOR":2,
+    "NODE_5_URL":"https://lbquarkid.extrimian.com",
+    "NODE_5_PATTERN":"did:quarkid",
+    "NODE_5_BEHAVIOR":1
 }
